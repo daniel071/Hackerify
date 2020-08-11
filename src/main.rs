@@ -27,12 +27,18 @@ pub fn build_ui(application: &gtk::Application) {
 
     let window: gtk::Window = builder.get_object("mainWindow").expect("Couldn't get window");
     window.set_application(Some(application));
-    // let open_button: gtk::ToolButton = builder
-    //     .get_object("open_button")
-    //     .expect("Couldn't get builder");
-    // let text_view: gtk::TextView = builder
-    //     .get_object("text_view")
-    //     .expect("Couldn't get text_view");
+    let saveButton: gtk::Button = builder
+        .get_object("saveButton")
+        .expect("Couldn't get builder");
+    let textView: gtk::TextView = builder
+        .get_object("mainText")
+        .expect("Couldn't get text_view");
+
+	saveButton.connect_clicked(clone!(@weak window => move |_| {
+		println!("hello!");
+		// println!("{:?}", textView.get_buffer());
+	}));
+
 	//
     // open_button.connect_clicked(clone!(@weak window => move |_| {
     //     // TODO move this to a impl?

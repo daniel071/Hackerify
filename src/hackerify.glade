@@ -57,7 +57,6 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="action_name">Save</property>
             <property name="image">image1</property>
           </object>
           <packing>
