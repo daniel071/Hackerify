@@ -38,10 +38,9 @@ pub fn build_ui(application: &gtk::Application) {
         .expect("Couldn't get text buffer");
 
 	saveButton.connect_clicked(clone!(@weak window => move |_| {
-		println!("hello!");
 		// let startBuffer @ endBuffer = buffer.get_bounds();
 		// let actualText = buffer.get_text(startBuffer, endBuffer, false);
-		let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), false);
+		let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), true);
 		println!("{:#?}", finalText);
 	}));
 
