@@ -33,10 +33,16 @@ pub fn build_ui(application: &gtk::Application) {
     let textView: gtk::TextView = builder
         .get_object("mainText")
         .expect("Couldn't get text_view");
+	let textBuffer: gtk::TextBuffer = builder
+        .get_object("textBuffer")
+        .expect("Couldn't get text buffer");
 
 	saveButton.connect_clicked(clone!(@weak window => move |_| {
 		println!("hello!");
-		// println!("{:?}", textView.get_buffer());
+		// let startBuffer @ endBuffer = buffer.get_bounds();
+		// let actualText = buffer.get_text(startBuffer, endBuffer, false);
+		let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), false);
+		println!("{:#?}", finalText);
 	}));
 
 	//
