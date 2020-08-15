@@ -36,6 +36,9 @@ pub fn build_ui(application: &gtk::Application) {
 	let textBuffer: gtk::TextBuffer = builder
         .get_object("textBuffer")
         .expect("Couldn't get text buffer");
+	let openButton: gtk::Button = builder
+        .get_object("openButton")
+        .expect("Couldn't get button");
 
 	saveButton.connect_clicked(clone!(@weak window => move |_| {
 		// let startBuffer @ endBuffer = buffer.get_bounds();
@@ -44,37 +47,36 @@ pub fn build_ui(application: &gtk::Application) {
 		println!("{:#?}", finalText);
 	}));
 
-	//
-    // open_button.connect_clicked(clone!(@weak window => move |_| {
-    //     // TODO move this to a impl?
-    //     let file_chooser = gtk::FileChooserDialog::new(
-    //         Some("Open File"),
-    //         Some(&window),
-    //         gtk::FileChooserAction::Open,
-    //     );
-    //     file_chooser.add_buttons(&[
-    //         ("Open", gtk::ResponseType::Ok),
-    //         ("Cancel", gtk::ResponseType::Cancel),
-    //     ]);
-    //     file_chooser.connect_response(clone!(@weak text_view => move |file_chooser, response| {
-    //         if response == gtk::ResponseType::Ok {
-    //             let filename = file_chooser.get_filename().expect("Couldn't get filename");
-    //             let file = File::open(&filename).expect("Couldn't open file");
-	//
-    //             let mut reader = BufReader::new(file);
-    //             let mut contents = String::new();
-    //             let _ = reader.read_to_string(&mut contents);
-	//
-    //             text_view
-    //                 .get_buffer()
-    //                 .expect("Couldn't get window")
-    //                 .set_text(&contents);
-    //         }
-    //         file_chooser.close();
-    //     }));
-	//
-    //     file_chooser.show_all();
-    // }));
+    openButton.connect_clicked(clone!(@weak window => move |_| {
+        // TODO move this to a impl?
+        let file_chooser = gtk::FileChooserDialog::new(
+            Some("Open File"),
+            Some(&window),
+            gtk::FileChooserAction::Open,
+        );
+        file_chooser.add_buttons(&[
+            ("Open", gtk::ResponseType::Ok),
+            ("Cancel", gtk::ResponseType::Cancel),
+        ]);
+        file_chooser.connect_response(clone!(@weak textView => move |file_chooser, response| {
+            if response == gtk::ResponseType::Ok {
+                let filename = file_chooser.get_filename().expect("Couldn't get filename");
+                let file = File::open(&filename).expect("Couldn't open file");
+
+                let mut reader = BufReader::new(file);
+                let mut contents = String::new();
+                let _ = reader.read_to_string(&mut contents);
+
+                textView
+                    .get_buffer()
+                    .expect("Couldn't get window")
+                    .set_text(&contents);
+            }
+            file_chooser.close();
+        }));
+
+        file_chooser.show_all();
+    }));
 
     window.show_all();
 }

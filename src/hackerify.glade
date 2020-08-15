@@ -27,6 +27,11 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
     <property name="can_focus">False</property>
     <property name="icon_name">document-save</property>
   </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="icon_name">document-open</property>
+  </object>
   <object class="GtkTextBuffer" id="textBuffer"/>
   <object class="GtkWindow" id="mainWindow">
     <property name="can_focus">False</property>
@@ -48,10 +53,13 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
         <property name="subtitle" translatable="yes">By Daniel</property>
         <property name="show_close_button">True</property>
         <child>
-          <object class="GtkFileChooserButton" id="openButton">
+          <object class="GtkButton" id="openButton">
+            <property name="label" translatable="yes">Load</property>
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="title" translatable="yes">Open</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="image">image2</property>
+            <property name="always_show_image">True</property>
           </object>
         </child>
         <child>
