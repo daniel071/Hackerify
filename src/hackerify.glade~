@@ -64,10 +64,6 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
       <placeholder/>
     </child>
   </object>
-  <object class="GtkMenu" id="epicMenu">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-  </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -77,18 +73,6 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="icon_name">document-open</property>
-  </object>
-  <object class="GtkPopover" id="popover1">
-    <property name="can_focus">False</property>
-    <child>
-      <object class="GtkButton" id="otherButton">
-        <property name="label" translatable="yes">About</property>
-        <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="focus_on_click">False</property>
-        <property name="receives_default">True</property>
-      </object>
-    </child>
   </object>
   <object class="GtkTextBuffer" id="textBuffer">
     <property name="text" translatable="yes">test</property>
@@ -134,20 +118,11 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
           </packing>
         </child>
         <child>
-          <object class="GtkMenuButton">
+          <object class="GtkButton" id="aboutButton">
+            <property name="label" translatable="yes">About</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="focus_on_click">False</property>
             <property name="receives_default">True</property>
-            <property name="popup">epicMenu</property>
-            <property name="use_popover">False</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">dialog-information</property>
-              </object>
-            </child>
           </object>
           <packing>
             <property name="position">2</property>
