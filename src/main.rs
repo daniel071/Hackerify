@@ -39,6 +39,16 @@ pub fn build_ui(application: &gtk::Application) {
 	let openButton: gtk::Button = builder
         .get_object("openButton")
         .expect("Couldn't get button");
+	let aboutDialog: gtk::AboutDialog = builder
+        .get_object("about")
+        .expect("Couldn't get dialog");
+	let aboutButton: gtk::Button = builder
+		.get_object("aboutButton")
+		.expect("Couldn't get button");
+
+	aboutButton.connect_clicked(clone!(@weak window => move |_| {
+		aboutDialog.show_all();
+	}));
 
 	saveButton.connect_clicked(clone!(@weak window => move |_| {
 		// let startBuffer @ endBuffer = buffer.get_bounds();
