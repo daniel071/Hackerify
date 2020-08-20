@@ -51,10 +51,34 @@ pub fn build_ui(application: &gtk::Application) {
 	}));
 
 	saveButton.connect_clicked(clone!(@weak window => move |_| {
-		// let startBuffer @ endBuffer = buffer.get_bounds();
-		// let actualText = buffer.get_text(startBuffer, endBuffer, false);
 		let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), true);
-		println!("{:#?}", finalText);
+		// fn get_buffer(buffer: &gtk::TextBuffer) -> String {
+		//     let start = buffer.get_start_iter();
+		//     let end = buffer.get_end_iter();
+		//     buffer.get_text(&start, &end, true)
+		// }
+		// let finalText = get_buffer(&textBuffer);
+		println!("{:#?}", glib::GString::as_str(&finalText));
+		// If we are programming the "Save As" button then we will not use the
+        // current path. Otherwise, we will save the editor's text to the
+        // current path, if there is a current path.
+		//}
+		//println!("help");
+		// The buffer for the text view, with `None` as the parameter because we are
+		// not going to define any text tags for this buffer.
+		// let text_buffer = TextBuffer::new(None);
+		// Then we shall assign the buffer to a new text view, which will automatically
+		// update itself as text is added or removed from the buffer.
+		// let text_view = TextView::new_with_buffer(&text_buffer);
+		// Getting text from a GtkTextBuffer is a little tricky, so here's an abstraction which you can use to specify to grab the entire range of the buffer and return it as a String. As it turns out, you may specify a specific range of text to obtain from this buffer.
+
+
+		// fn get_buffer(buffer: &gtk::TextBuffer) -> Option<String> {
+		//     let start = buffer.get_start_iter();
+		//     let end = buffer.get_end_iter();
+		//     buffer.get_text(&start, &end, true)
+		// }
+		// println!("{:#?}", get_buffer(&textBuffer));
 	}));
 
     openButton.connect_clicked(clone!(@weak window => move |_| {
@@ -90,6 +114,7 @@ pub fn build_ui(application: &gtk::Application) {
 
     window.show_all();
 }
+
 
 fn main() {
     let application = gtk::Application::new(
