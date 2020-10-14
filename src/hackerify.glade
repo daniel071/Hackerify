@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.36.0 
 
-Copyright (C) 
+Copyright (C) Daniel Pavela
 
-This file is part of .
+This file is part of Hackerify.
 
- is free software: you can redistribute it and/or modify
+Hackerify is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
- is distributed in the hope that it will be useful,
+Hackerify is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with .  If not, see <http://www.gnu.org/licenses/>.
+along with Hackerify.  If not, see <http://www.gnu.org/licenses/>.
+
+Author: Daniel Pavela
 
 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <!-- interface-license-type gplv3 -->
+  <!-- interface-name Hackerify -->
+  <!-- interface-description A simple utility to convert text to L33T SP43K -->
+  <!-- interface-copyright Daniel Pavela -->
+  <!-- interface-authors Daniel Pavela -->
   <object class="GtkAboutDialog" id="about">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
