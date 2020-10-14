@@ -33,53 +33,54 @@ pub fn build_ui(application: &gtk::Application) {
     let textView: gtk::TextView = builder
         .get_object("mainText")
         .expect("Couldn't get text_view");
-	let textBuffer: gtk::TextBuffer = builder
-        .get_object("textBuffer")
-        .expect("Couldn't get text buffer");
-	let openButton: gtk::Button = builder
+    //let textBuffer: gtk::TextBuffer = builder
+        //.get_object("textBuffer")
+        //.expect("Couldn't get text buffer");
+    let textBuffer: gtk::TextBuffer = TextViewExt::get_buffer(&textView).unwrap();
+    let openButton: gtk::Button = builder
         .get_object("openButton")
         .expect("Couldn't get button");
-	let aboutDialog: gtk::AboutDialog = builder
+    let aboutDialog: gtk::AboutDialog = builder
         .get_object("about")
         .expect("Couldn't get dialog");
-	let aboutButton: gtk::Button = builder
-		.get_object("aboutButton")
-		.expect("Couldn't get button");
+    let aboutButton: gtk::Button = builder
+        .get_object("aboutButton")
+        .expect("Couldn't get button");
 
-	aboutButton.connect_clicked(clone!(@weak window => move |_| {
-		aboutDialog.show_all();
-	}));
+    aboutButton.connect_clicked(clone!(@weak window => move |_| {
+        aboutDialog.show_all();
+    }));
 
-	saveButton.connect_clicked(clone!(@weak window => move |_| {
-		let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), true);
-		// fn get_buffer(buffer: &gtk::TextBuffer) -> String {
-		//     let start = buffer.get_start_iter();
-		//     let end = buffer.get_end_iter();
-		//     buffer.get_text(&start, &end, true)
-		// }
-		// let finalText = get_buffer(&textBuffer);
-		println!("{:#?}", glib::GString::as_str(&finalText));
-		// If we are programming the "Save As" button then we will not use the
+    saveButton.connect_clicked(clone!(@weak window => move |_| {
+        //let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), true);
+        fn get_buffer(buffer: &gtk::TextBuffer) -> glib::GString {
+            let start = buffer.get_start_iter();
+            let end = buffer.get_end_iter();
+            return buffer.get_text(&start, &end, true).unwrap()
+        }
+        let finalText = get_buffer(&textBuffer);
+        println!("{:#?}", finalText.as_str());
+        // If we are programming the "Save As" button then we will not use the
         // current path. Otherwise, we will save the editor's text to the
         // current path, if there is a current path.
-		//}
-		//println!("help");
-		// The buffer for the text view, with `None` as the parameter because we are
-		// not going to define any text tags for this buffer.
-		// let text_buffer = TextBuffer::new(None);
-		// Then we shall assign the buffer to a new text view, which will automatically
-		// update itself as text is added or removed from the buffer.
-		// let text_view = TextView::new_with_buffer(&text_buffer);
-		// Getting text from a GtkTextBuffer is a little tricky, so here's an abstraction which you can use to specify to grab the entire range of the buffer and return it as a String. As it turns out, you may specify a specific range of text to obtain from this buffer.
+        //}
+        //println!("help");
+        // The buffer for the text view, with `None` as the parameter because we are
+        // not going to define any text tags for this buffer.
+        // let text_buffer = TextBuffer::new(None);
+        // Then we shall assign the buffer to a new text view, which will automatically
+        // update itself as text is added or removed from the buffer.
+        // let text_view = TextView::new_with_buffer(&text_buffer);
+        // Getting text from a GtkTextBuffer is a little tricky, so here's an abstraction which you can use to specify to grab the entire range of the buffer and return it as a String. As it turns out, you may specify a specific range of text to obtain from this buffer.
 
 
-		// fn get_buffer(buffer: &gtk::TextBuffer) -> Option<String> {
-		//     let start = buffer.get_start_iter();
-		//     let end = buffer.get_end_iter();
-		//     buffer.get_text(&start, &end, true)
-		// }
-		// println!("{:#?}", get_buffer(&textBuffer));
-	}));
+        // fn get_buffer(buffer: &gtk::TextBuffer) -> Option<String> {
+        //     let start = buffer.get_start_iter();
+        //     let end = buffer.get_end_iter();
+        //     buffer.get_text(&start, &end, true)
+        // }
+        // println!("{:#?}", get_buffer(&textBuffer));
+    }));
 
     openButton.connect_clicked(clone!(@weak window => move |_| {
         // TODO move this to a impl?
