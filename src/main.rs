@@ -30,12 +30,12 @@ pub fn build_ui(application: &gtk::Application) {
     let saveButton: gtk::Button = builder
         .get_object("saveButton")
         .expect("Couldn't get builder");
+	let hackButton: gtk::Button = builder
+		.get_object("hackButton")
+		.expect("Couldn't get builder");
     let textView: gtk::TextView = builder
         .get_object("mainText")
         .expect("Couldn't get text_view");
-    //let textBuffer: gtk::TextBuffer = builder
-        //.get_object("textBuffer")
-        //.expect("Couldn't get text buffer");
     let textBuffer: gtk::TextBuffer = TextViewExt::get_buffer(&textView).unwrap();
     let openButton: gtk::Button = builder
         .get_object("openButton")
@@ -51,36 +51,39 @@ pub fn build_ui(application: &gtk::Application) {
         aboutDialog.show_all();
     }));
 
-    saveButton.connect_clicked(clone!(@weak window => move |_| {
-        //let finalText = textBuffer.get_text(&textBuffer.get_start_iter(), &textBuffer.get_end_iter(), true);
-        fn get_buffer(buffer: &gtk::TextBuffer) -> glib::GString {
-            let start = buffer.get_start_iter();
-            let end = buffer.get_end_iter();
-            return buffer.get_text(&start, &end, true).unwrap()
-        }
-        let finalText = get_buffer(&textBuffer);
-        println!("{:#?}", finalText.as_str());
-        // If we are programming the "Save As" button then we will not use the
-        // current path. Otherwise, we will save the editor's text to the
-        // current path, if there is a current path.
-        //}
-        //println!("help");
-        // The buffer for the text view, with `None` as the parameter because we are
-        // not going to define any text tags for this buffer.
-        // let text_buffer = TextBuffer::new(None);
-        // Then we shall assign the buffer to a new text view, which will automatically
-        // update itself as text is added or removed from the buffer.
-        // let text_view = TextView::new_with_buffer(&text_buffer);
-        // Getting text from a GtkTextBuffer is a little tricky, so here's an abstraction which you can use to specify to grab the entire range of the buffer and return it as a String. As it turns out, you may specify a specific range of text to obtain from this buffer.
+	//
+    // saveButton.connect_clicked(clone!(@weak window => move |_| {
+    //     fn get_buffer(buffer: &gtk::TextBuffer) -> glib::GString {
+    //         let start = buffer.get_start_iter();
+    //         let end = buffer.get_end_iter();
+    //         return buffer.get_text(&start, &end, true).unwrap()
+    //     }
+    //     let finalText = get_buffer(&textBuffer);
+    //     println!("{:#?}", finalText.as_str());
+    // }));
 
+	hackButton.connect_clicked(clone!(@weak window => move |_| {
+		fn get_buffer(buffer: &gtk::TextBuffer) -> glib::GString {
+			let start = buffer.get_start_iter();
+			let end = buffer.get_end_iter();
+			return buffer.get_text(&start, &end, true).unwrap()
+		}
+		let finalText = get_buffer(&textBuffer);
+		let mut leetText = finalText.as_str().replace("o", "0");
+		leetText = leetText.as_str().replace("O", "0");
+		leetText = leetText.as_str().replace("i", "1");
+		leetText = leetText.as_str().replace("I", "1");
+		leetText = leetText.as_str().replace("e", "3");
+		leetText = leetText.as_str().replace("E", "3");
+		leetText = leetText.as_str().replace("a", "4");
+		leetText = leetText.as_str().replace("A", "4");
+		leetText = leetText.as_str().replace("s", "5");
+		leetText = leetText.as_str().replace("S", "5");
 
-        // fn get_buffer(buffer: &gtk::TextBuffer) -> Option<String> {
-        //     let start = buffer.get_start_iter();
-        //     let end = buffer.get_end_iter();
-        //     buffer.get_text(&start, &end, true)
-        // }
-        // println!("{:#?}", get_buffer(&textBuffer));
-    }));
+		&textBuffer.set_text(&leetText);
+		println!("{:#?}", leetText);
+	}));
+
 
     openButton.connect_clicked(clone!(@weak window => move |_| {
         // TODO move this to a impl?

@@ -1,47 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.36.0 
+<!-- Generated with glade 3.38.1 
 
-Copyright (C) 
+Copyright (C) Daniel Pavela
 
-This file is part of .
+This file is part of Hackerify.
 
- is free software: you can redistribute it and/or modify
+Hackerify is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
- is distributed in the hope that it will be useful,
+Hackerify is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with .  If not, see <http://www.gnu.org/licenses/>.
+along with Hackerify.  If not, see <http://www.gnu.org/licenses/>.
+
+Author: Daniel Pavela
 
 -->
 <interface>
   <requires lib="gtk+" version="3.22"/>
   <!-- interface-license-type gplv3 -->
+  <!-- interface-name Hackerify -->
+  <!-- interface-description A simple utility to convert text to L33T SP43K -->
+  <!-- interface-copyright Daniel Pavela -->
+  <!-- interface-authors Daniel Pavela -->
   <object class="GtkAboutDialog" id="about">
-    <property name="can_focus">False</property>
-    <property name="type_hint">dialog</property>
-    <property name="program_name">Hackerify</property>
+    <property name="can-focus">False</property>
+    <property name="type-hint">dialog</property>
+    <property name="program-name">Hackerify</property>
     <property name="version">Version 0.1.0</property>
     <property name="copyright" translatable="yes">Daniel Pavela</property>
     <property name="comments" translatable="yes">A simple utility to convert text to L33T SP34K</property>
     <property name="website">https://github.com/daniel071/hackerify</property>
     <property name="authors">Daniel Pavela</property>
-    <property name="logo_icon_name">accessories-text-editor</property>
-    <property name="license_type">gpl-3-0</property>
+    <property name="logo-icon-name">accessories-text-editor</property>
+    <property name="license-type">gpl-3-0</property>
     <child internal-child="vbox">
       <object class="GtkBox">
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <property name="spacing">2</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox">
-            <property name="can_focus">False</property>
-            <property name="layout_style">end</property>
+            <property name="can-focus">False</property>
+            <property name="layout-style">end</property>
             <child>
               <placeholder/>
             </child>
@@ -60,50 +66,47 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
         </child>
       </object>
     </child>
-    <child type="titlebar">
-      <placeholder/>
-    </child>
   </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">document-save</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-save</property>
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">document-open</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-open</property>
   </object>
   <object class="GtkImage" id="image3">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="icon_name">dialog-information</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">dialog-information</property>
   </object>
   <object class="GtkTextBuffer" id="textBuffer"/>
   <object class="GtkWindow" id="mainWindow">
-    <property name="can_focus">False</property>
-    <property name="default_width">1000</property>
-    <property name="default_height">700</property>
+    <property name="can-focus">False</property>
+    <property name="default-width">1000</property>
+    <property name="default-height">700</property>
     <child>
       <object class="GtkTextView" id="mainText">
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
-        <property name="wrap_mode">word</property>
+        <property name="can-focus">True</property>
+        <property name="wrap-mode">word</property>
         <property name="buffer">textBuffer</property>
       </object>
     </child>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="title" translatable="yes">H4XX0R1FY</property>
         <property name="subtitle" translatable="yes">By Daniel</property>
-        <property name="show_close_button">True</property>
+        <property name="show-close-button">True</property>
         <child>
           <object class="GtkButton" id="aboutButton">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
             <property name="image">image3</property>
           </object>
         </child>
@@ -111,10 +114,10 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
           <object class="GtkButton" id="openButton">
             <property name="label" translatable="yes">Load</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
             <property name="image">image2</property>
-            <property name="always_show_image">True</property>
+            <property name="always-show-image">True</property>
           </object>
           <packing>
             <property name="position">1</property>
@@ -123,12 +126,24 @@ along with .  If not, see <http://www.gnu.org/licenses/>.
         <child>
           <object class="GtkButton" id="saveButton">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
             <property name="image">image1</property>
           </object>
           <packing>
             <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Hackerify</property>
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+          </object>
+          <packing>
+            <property name="pack-type">end</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>
