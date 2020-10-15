@@ -1,8 +1,7 @@
 #![allow(non_snake_case)]
 
-//! # Toolbar, Scrollable Text View and File Chooser
-//!
-//! A simple text file viewer
+//! # Hackerify
+//! A simple utility to change text and files to L33T SP34K
 
 extern crate gio;
 extern crate glib;
@@ -69,19 +68,15 @@ pub fn build_ui(application: &gtk::Application) {
 			return buffer.get_text(&start, &end, true).unwrap()
 		}
 		let finalText = get_buffer(&textBuffer);
-		let mut leetText = finalText.as_str().replace("o", "0");
+		let mut leetText = finalText.as_str().to_uppercase();
 		leetText = leetText.as_str().replace("O", "0");
-		leetText = leetText.as_str().replace("i", "1");
 		leetText = leetText.as_str().replace("I", "1");
-		leetText = leetText.as_str().replace("e", "3");
 		leetText = leetText.as_str().replace("E", "3");
-		leetText = leetText.as_str().replace("a", "4");
 		leetText = leetText.as_str().replace("A", "4");
-		leetText = leetText.as_str().replace("s", "5");
 		leetText = leetText.as_str().replace("S", "5");
 
 		&textBuffer.set_text(&leetText);
-		println!("{:#?}", leetText);
+		// println!("{:#?}", leetText);
 	}));
 
 
